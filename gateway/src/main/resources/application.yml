@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: customer-service
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/api/v1/customer/**
+
+  application:
+    name: gateway-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8222
+
